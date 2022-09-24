@@ -1,0 +1,102 @@
+CREATE TABLE actors (
+id INTEGER PRIMARY KEY,
+name TEXT,
+movie TEXT,
+spouse TEXT,
+age INTEGER);
+
+INSERT INTO actors (name, movie, spouse, age)
+VALUES ('Brad Pitt','Seven', 'Angelina', 48);
+
+INSERT INTO actors (name, movie, spouse, age)
+VALUES ('Tom Hanks', 'Big', 'Rita Wilson', 66);
+INSERT INTO actors (name, movie, spouse, age)
+VALUES ('Jason Bateman', 'Hancock', 'Amanda Anka', 53);
+INSERT INTO actors (name, movie, spouse, age)
+VALUES ("Paul Rudd", "Knocked Up", "Julie Yaeger", 53);
+INSERT INTO actors (name, movie, spouse, age)
+VALUES ("Will Ferrel", "ELF", "Viveca Paulin", 55);
+INSERT INTO actors (name, movie, spouse, age)
+VALUES ("Vince Vaughn", "Old School", "Kyla Weber", 52);
+INSERT INTO actors (name, movie, spouse, age)
+VALUES ("Ben Stiller", "Along Came Polly", "Christine Taylor", 56);
+Insert into actors (name, movie, spouse, age)
+VALUES ('Jake Gyllenhal', 'Source Code', 'single', 41);
+Insert into actors (name, movie, spouse, age)
+Values ('Tobey Maguire', 'SpiderMan', 'Jennifer Meyer', 47);
+Insert into actors (name, movie, spouse, age)
+Values ('Matt Damon', 'Saving Private Ryan', 'Luciana Barroso', 51);
+Insert into actors (name, movie, spouse, age)
+Values ('Ben Affleck', 'Saving Private Ryan', 'JLo', 52);
+Insert into actors (name, movie, spouse, age)
+Values ('Luke Wilson', 'Old School', 'Single', 52);
+Insert into actors (name, movie, spouse, age)
+Values ('Robert Downey JR', 'Tropic Thunder', 'Single', 57);
+Insert into actors (name, movie, spouse, age)
+VAlues ('Jack Black', 'Tropic Thunder', 'Single', 53);
+Insert into actors (name, movie, spouse, age)
+VALUES ('Owen Wilson', 'Zoolander', 'Single', 53);
+
+
+Select * from actors;
+
+
+CREATE TABLE costar (
+id INTEGER PRIMARY KEY,
+catalog INTEGER,
+fullname TEXT,
+movie TEXT,
+year INTEGER);
+
+Insert into costar (catalog, fullname, movie, year)
+VALUES (1,'Gwenyth Paltrow','Seven', 1990);
+Insert into costar (catalog,fullname, movie, year)
+VALUES (2, 'John Heard','Big',1982);
+Insert into costar (catalog, fullname, movie, year)
+VALUES (3,'Will Smith', 'Hancock', 2011);
+Insert into costar (catalog, fullname, movie, year)
+VALUES (4, "Seth Rogan", "Knocked Up", 2006);
+Insert into costar (catalog,fullname, movie, year)
+VALUES (5,"Zoey Deschanel", "ELF", 2003);
+Insert into costar (catalog,fullname, movie, year)
+VALUES (6,"Will Ferrel", "Old School", 2003);
+Insert into costar (catalog,fullname, movie, year)
+VALUES (7,"Jen Aniston", "Along Came Polly", 2003);
+Insert into costar (catalog,fullname, movie, year)
+VALUES (8,'Cas Anvar', 'Source Code', 2011);
+Insert into costar (catalog,fullname, movie, year)
+Values (9,'Kirsten Dunst', 'Spider Man',2011);
+Insert into costar (catalog,fullname, movie, year)
+Values (10,'Tom Hanks', 'Saving Private Ryan', 2003);
+Insert into costar (catalog,fullname, movie, year)
+VALUES (11,'Vin Deisel','Saving Private Ryan',2003);
+Insert into costar (catalog,fullname, movie, year)
+Values (12,'Vince Vaughn', 'Old School', 2003);
+Insert into costar (catalog,fullname, movie, year)
+VALUES (13,'Ben Stiller', 'Tropic Thunder', 2008);
+Insert into costar (catalog,fullname, movie, year)
+VALUES (14,'Jack BLack', 'Tropic Thunder', 2008);
+Insert into costar (catalog,fullname, movie, year)
+VALUES (15,'Ben Stiller', 'Zoolander', 2001);
+
+Select * from costar;
+
+SELECT name, age from actors 
+where age<50 
+Order by age desc;
+
+SELECT name from actors
+where spouse='single' or spouse='Single';
+
+SELECT actors.name, costar.fullname, actors.movie
+FROM actors
+LEFT JOIn costar
+ON actors.movie = costar.movie;
+
+Select MAX(age), name
+from actors;
+
+SELECT costar.fullname, actors.name, actors.movie
+from actors
+join costar
+on actors.id= costar.catalog;
