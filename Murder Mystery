@@ -1,0 +1,36 @@
+Select description From crime_scene_report
+Where date ='20180115'AND city = 'SQL City' AND type = 'murder';
+
+WITH witness1 AS (SELECT id from person
+				  where address_street_name = "Northwestern Dr"
+				  ORder by address_number DESC Limit 1),
+				  
+ witness2 AS (SELECT id from person
+			  where name = 'Annabel' AND address_street_name = 'Franklin Ave'),
+	
+ witnesses AS (SELECT *, 1 AS witness FROM witness1
+    UNION
+    SELECT *, 2 AS witness FROM witness2)
+	
+SELECT witness, transcript FROM witnesses
+LEFT JOIN interview ON witnesses.id = interview.person_id;
+              
+-- Cross-referencing the gym memberships, gym check-ins, and drivers license:
+WITH gym_checkins AS (SELECT person_id, name from get_fit_now_member
+					  Left JOin get_fit_now_check_in 
+					  ON get_fit_now_member.id = get_fit_now_check_in.membership_id
+					  where membership_status = 'gold' AND id LIKE '48Z%' 
+					  AND check_in_date = '20180109'),
+					  
+		suspects AS (Select gym_checkins.person_id, gym_checkins.name, plate_number, gender
+					 FROM gym_checkins
+					 LEFT JOIN person ON gym_checkins.person_id = person.id
+					 Left Join drivers_license ON person.license_id = drivers_license.id)
+					 
+Select * from suspects
+Where plate_number Like '%H42W%' and gender = 'male';
+					  
+   INSERT INTO Solution VALUES (1, 'Jeremy Bowers');           
+    SELECT transcript
+   From interview
+   Where person_id = 67318;          
